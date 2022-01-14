@@ -1,4 +1,5 @@
 import * as React from 'react';
+// import Students-data from "./students-data";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,10 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-//createData takes column names args & return column name args in table
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+//import data to react
 const student_data = {
     "data": [
       {
@@ -22,7 +20,7 @@ const student_data = {
       },
       {
       "name": "Keeley Jones",
-      "application_status": "completed",
+      "application_status": "",
       "payment_id": "17847834",
       "document_ids": ["3259611", "5926431"],
       "created_at": "1606968683"
@@ -30,22 +28,40 @@ const student_data = {
     ]
 };
 
-// this function will take the obj student_data & return data[].propertyName in each column
 const students = student_data.data;
-const student = students.forEach(student => console.log(student));
 
-const myRows = [];
+const getStudent = function(students){
+    //Iterate over students array
+    for(let i = 0; i < students.length; i++){
+        let student = students[i];
+        console.log(student);
+
+        // get property values for each student
+        let studentValues = (Object.values(student));
+        //console.log(studentValues); // [ ted, 1, completed]
+
+        //push each value into createData
+        console.log(studentValues);
+        return(studentValues + " studentValues");
+    }
+}
+console.log(getStudent(students));
+
+//takes values array as argument
+//iterate over array
+// put values[index] in an object
+
+
+function createData(name, application_status, payment_id, document_ids, created_at) {
+    return { name, application_status, payment_id, document_ids, created_at };
+}
 
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Example Name', 159, 6.0, 24, 4.0),
+  createData(getStudent(students)),
+
 ];
-
-
 
 export default function BasicTable() {
   return (
@@ -60,19 +76,13 @@ export default function BasicTable() {
             <TableCell align="right">Application Created</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+        <TableBody>{rows.map((row, index) => (
+            <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableCell component="th" scope="row"> {row.name}</TableCell>
+              <TableCell align="right">{row.application_status}</TableCell>
+              <TableCell align="right">{row.payment_id}</TableCell>
+              <TableCell align="right">{row.document_ids}</TableCell>
+              <TableCell align="right">{row.created_at}</TableCell>
             </TableRow>
           ))}
         </TableBody>
