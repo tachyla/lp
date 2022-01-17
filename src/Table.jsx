@@ -29,38 +29,20 @@ const student_data = {
 };
 
 const students = student_data.data;
+//map keys for each student
+const getStudentName = students.map(student => (student.name));
+const getAppStatus = students.map(student => (student.application_status));
+const getPaymentId = students.map(student => (student.payment_id));
+const getDocsIds = students.map(student => (student.document_ids));
+const getCreatedAt_date = students.map(student => (student.created_at));
 
-const getStudent = function(students){
-    //Iterate over students array
-    for(let i = 0; i < students.length; i++){
-        let student = students[i];
-        console.log(student);
-
-        // get property values for each student
-        let studentValues = (Object.values(student));
-        //console.log(studentValues); // [ ted, 1, completed]
-
-        //push each value into createData
-        console.log(studentValues);
-        return(studentValues + " studentValues");
-    }
-}
-console.log(getStudent(students));
-
-//takes values array as argument
-//iterate over array
-// put values[index] in an object
-
-
-function createData(name, application_status, payment_id, document_ids, created_at) {
+const createData = function( name, application_status, payment_id, document_ids, created_at ){
     return { name, application_status, payment_id, document_ids, created_at };
-}
-
+};
 
 const rows = [
   createData('Example Name', 159, 6.0, 24, 4.0),
-  createData(getStudent(students)),
-
+  createData( getStudentName, getAppStatus, getPaymentId, getDocsIds, getCreatedAt_date ),
 ];
 
 export default function BasicTable() {
