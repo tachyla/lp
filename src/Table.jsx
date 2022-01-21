@@ -7,28 +7,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Data from "./students-data";
 
-//import data to react
-const student_data = {
-    "data": [
-      {
-      "name": "Ted Lasso",
-      "application_status": "completed",
-      "payment_id": null,
-      "document_ids": ["4528834"],
-      "created_at": "1606972785"
-      },
-      {
-      "name": "Keeley Jones",
-      "application_status": "",
-      "payment_id": "17847834",
-      "document_ids": ["3259611", "5926431"],
-      "created_at": "1606968683"
-      }
-    ]
-};
+console.log(Data); //=>{object}
+const students = Data.data;
+console.log(students);
 
-const students = student_data.data;
 //map keys for each student
 const getStudentName = students.map(student => (student.name));
 const getAppStatus = students.map(student => (student.application_status));
