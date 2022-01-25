@@ -9,9 +9,12 @@
     },
     {
       "name": "Keeley Jones",
-      "application_status": "",
+      "application_status": null,
       "payment_id": "17847834",
-      "document_ids": ["3259611", "5926431"],
+      "document_ids": [
+          "3259611",
+          "5926431"
+      ],
       "created_at": "1606968683"
     }
   ]
